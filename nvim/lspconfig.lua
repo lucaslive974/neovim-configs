@@ -6,10 +6,6 @@ local function on_attach(client, bufnr)
 	end
 end
 
-local servers = { "html", "cssls", "clangd", "cmake", "basedpyright", "ts_ls", "tailwindcss" }
-vim.lsp.enable(servers)
--- read :h vim.lsp.config for changing options of lsp servers
-
 vim.lsp.config("*", {
 	root_markers = { ".git", "CMakeLists.txt" },
 	on_attach = on_attach,
@@ -25,6 +21,14 @@ vim.lsp.config.clangd = {
 		"--function-arg-placeholders=0",
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+	init_options = {
+		fallbackFlags = {
+			"-std=c++23",
+			"-Wall",
+			"-Wextra",
+			"-Wpedantic",
+		},
+	},
 }
 
 vim.lsp.config.cmake = {
@@ -34,3 +38,39 @@ vim.lsp.config.cmake = {
 		buildDirectory = "build",
 	},
 }
+
+vim.lsp.config.jsonls = {
+	cmd = function(dispatchers, config)
+		local cmd = "vscode-json-language-server"
+		if (config or {}).root_dir then
+			local local_cmd = vim.fs.joinpath(config.root_dir, "node_modules/.bin", cmd)
+			if vim.fn.executable(local_cmd) == 1 then
+				cmd = local_cmd
+			end
+		end
+		return vim.lsp.rpc.start({ cmd, "--stdio" }, dispatchers)
+	end,
+	filetypes = { "json", "jsonc" },
+	init_options = {
+		provideFormatter = true,
+	},
+	settings = {
+		json = {
+			schemas = {
+				{
+					fileMatch = { "package.json", "*/package.json" },
+					url = "https://json.schemastore.org/package.json",
+				},
+				{
+					fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+					url = "https://json.schemastore.org/tsconfig.json",
+				},
+			},
+			validate = { enable = true },
+		},
+	},
+}
+
+local servers = { "html", "cssls", "clangd", "cmake", "basedpyright", "ts_ls", "tailwindcss", "jsonls" }
+vim.lsp.enable(servers)
+-- read :h vim.lsp.config for changing options of lsp servers

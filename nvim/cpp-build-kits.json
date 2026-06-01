@@ -8,6 +8,17 @@
         "generator": "Xcode",
         "build_type_aware": false
     },
+    "gcc": {
+        "compilers": {
+            "C": "/usr/bin/gcc",
+            "CXX": "/usr/bin/g++"
+        },
+        "cmake_usr_args": {
+            "CMAKE_CXX_FLAGS": "-std=c++23"
+        },
+        "query_driver": "/usr/bin/g++",
+        "generator": "Ninja"
+    },
     "clang": {
         "compilers": {
             "C": "/usr/bin/clang",

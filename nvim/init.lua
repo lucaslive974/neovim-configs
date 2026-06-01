@@ -45,14 +45,24 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
-				"clangd",
-				"clang-format",
-				"codelldb",
-				"cmake-language-server",
-				"typescript-language-server",
-				"tailwindcss-language-server",
 				"basedpyright",
+				"clang-format",
+				"clangd",
+				"codelldb",
+				"css-lsp",
+				"debugpy",
+				"docker-language-server",
+				"eslint_d",
+				"html-lsp",
+				"js-debug-adapter",
+				"json-lsp",
+				"lua-language-server",
+				"prettier",
+				"prettierd",
 				"pylint",
+				"stylua",
+				"tailwindcss-language-server",
+				"typescript-language-server",
 			},
 		},
 	},
@@ -71,7 +81,7 @@ return {
 
 	{
 		"stevearc/conform.nvim",
-		event = 'BufWritePre', -- uncomment for format on save
+		event = "BufWritePre", -- uncomment for format on save
 		opts = require("configs.conform"),
 	},
 
