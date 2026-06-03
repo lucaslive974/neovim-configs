@@ -7,7 +7,6 @@ local options = {
 		html = { "prettier" },
 		python = { "ruff_fix", "ruff_format" },
 	},
-
 	format_on_save = false,
 }
 

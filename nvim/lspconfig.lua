@@ -1,6 +1,8 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local function on_attach(client, bufnr)
+	client.server_capabilities.documentFormattingProvider = false
+	client.server_capabilities.documentRangeFormattingProvider = false
 	if not client.server_capabilities.signatureHelpProvider then
 		vim.lsp.handlers["textDocument/signatureHelp"] = nil
 	end
@@ -67,6 +69,40 @@ vim.lsp.config.jsonls = {
 				},
 			},
 			validate = { enable = true },
+		},
+	},
+}
+
+vim.lsp.config.basedpyright = {
+	settings = {
+		analysis = {
+			-- Define o tipo de checagem (padrão é "standard", mas suas regras customizam isso)
+			typeCheckingMode = "standard",
+
+			-- Suas regras personalizadas traduzidas para a sintaxe do LSP (Lua)
+			diagnosticSeverityOverrides = {
+				reportConstantRedefinition = "none",
+				reportMissingSuperCall = "none",
+				reportMissingTypeArgument = "none",
+				reportGeneralTypeIssues = "warning",
+				reportUnknownVariableType = "none",
+				reportUnknownParameterType = "none",
+				reportUnknownMemberType = "none",
+				reportUnknownArgumentType = "none",
+				reportAny = "none",
+				reportMissingParameterType = "none",
+				reportUnusedParameter = "none",
+				reportUnusedCallResult = "none",
+				reportExplicitAny = "none",
+				reportDeprecated = "none",
+				reportUnusedImport = "none",
+				reportUnannotatedClassAttribute = "none",
+				reportImplicitOverride = "none",
+				reportMissingTypeStubs = "none",
+				reportUnknownLambdaType = "none",
+				reportUnnecessaryComparison = "none",
+				reportUnreachable = "none",
+			},
 		},
 	},
 }
