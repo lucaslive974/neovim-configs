@@ -63,6 +63,7 @@ return {
 				"stylua",
 				"tailwindcss-language-server",
 				"typescript-language-server",
+        "cmake-language-server"
 			},
 		},
 	},
