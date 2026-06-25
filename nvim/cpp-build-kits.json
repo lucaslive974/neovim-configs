@@ -14,7 +14,7 @@
             "CXX": "/usr/bin/g++"
         },
         "cmake_usr_args": {
-            "CMAKE_CXX_FLAGS": "-std=c++23"
+            "CMAKE_CXX_FLAGS": "-std=c++26"
         },
         "query_driver": "/usr/bin/g++",
         "generator": "Ninja"
@@ -25,7 +25,7 @@
             "CXX": "/usr/bin/clang++"
         },
         "cmake_usr_args": {
-            "CMAKE_CXX_FLAGS": "-stdlib=libc++"
+            "CMAKE_CXX_FLAGS": "-stdlib=libc++ -std=c++26"
         },
         "query_driver" : "/usr/bin/clang++",
         "generator": "Ninja"

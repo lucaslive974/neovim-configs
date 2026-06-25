@@ -16,16 +16,18 @@ vim.lsp.config("*", {
 vim.lsp.config.clangd = {
 	cmd = {
 		"clangd",
+    "-j=4",
 		"--clang-tidy",
 		"--background-index",
-		"--header-insertion=iwyu",
+		"--header-insertion=never",
 		"--completion-style=detailed",
 		"--function-arg-placeholders=0",
+    "--pch-storage=disk"
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	init_options = {
 		fallbackFlags = {
-			"-std=c++23",
+			"-std=c++26",
 			"-Wall",
 			"-Wextra",
 			"-Wpedantic",
